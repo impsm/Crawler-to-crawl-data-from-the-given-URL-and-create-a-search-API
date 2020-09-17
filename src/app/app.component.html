@@ -1,0 +1,25 @@
+<div>
+  <div *ngIf="!moviesavailable">
+      <button type="button" (click)="searchData()">Get Movies</button>
+      <p></p>
+  </div>
+
+  <input [(ngModel)]="searchText" placeholder="Search anything.." class="advancedSearchTextbox">
+  <p></p>
+
+  <table>
+    <thead>
+        <tr>
+            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of moviesList | searchFilter: {name: searchText, rating:searchText, duration: searchText, genre: searchText}; let i=index;">
+            <td>{{row.name}}</td>
+            <td>{{row.rating}}</td>
+            <td>{{row.duration}}</td>
+            <td>{{row.genre.trim()}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
